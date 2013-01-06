@@ -14,6 +14,7 @@
 	height: 150px;
 	margin-right: -10px;
 	padding-right: 3px;
+	-webkit-overflow-scrolling:touch;
 }
 /* webkit hack */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -33,5 +34,27 @@
 	position: absolute;
 	top: 0;
 	width: 100%;
-	height: 20px;
+	height: 15%;
+	cursor: pointer;
+}
+.jetscrollpanel .jetscrollbar .jetscrollarrow {
+	position: absolute;
+	left: 0;
+	width: 10px;
+	height: 10px;
+	display: block;
+	font-size: 10px;
+	line-height: 10px;
+
+	color: #000;
+	background: red;
+}
+.jetscrollpanel .jetscrollbar .jetscrollarrow:active {
+	background: magenta;
+}
+.jetscrollpanel .jetscrollbar .jetscrollarrow-up {
+	top: -10px;
+}
+.jetscrollpanel .jetscrollbar .jetscrollarrow-down {
+	bottom: -10px;
 }
