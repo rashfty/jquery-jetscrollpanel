@@ -1,0 +1,37 @@
+.jetscrollpanel {
+	display: block;
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+/* webkit hack */
+.jetscrollpanel ::-webkit-scrollbar {
+	display: none;
+}
+.jetscrollpanel .jetscrollcontent {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 150px;
+	margin-right: -10px;
+	padding-right: 3px;
+}
+/* webkit hack */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.jetscrollpanel .jetscrollcontent {
+		margin-right: 0;
+		padding-right: 10px;
+	}
+}
+.jetscrollpanel .jetscrollbar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 10px;
+	height: 100%;
+}
+.jetscrollpanel .jetscrollslider {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 20px;
+}
