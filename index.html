@@ -32,20 +32,36 @@
             position: relative;
             height: 150px;
         }
+        /*
         #example:before,
         #example:after {
-            position: relative;
+            position: absolute;
             content: "";
             display: block;
             width: 100%;
             height: 1px;
-            box-shadow: 0 0 15px 10px #FFF;
             z-index: 2;
+            box-shadow: 0 0 25px 20px #FFF;
         }
+        #example:before {
+            top: -5px;
+        }
+        #example:after {
+            bottom: -5px;
+        }
+        */
     </style>
     <script>
     	$(function() {
 		$("#example").jetScrollPanel();
+        $("#link1").click(function() {
+            $("#example").jetScrollPanel("scroll", 10);
+            return false;
+        });
+        $("#link2").click(function() {
+            $("#example").jetScrollPanel("scroll", "+=10");
+            return false;
+        });
 	});
     </script>
   </head>
@@ -92,6 +108,8 @@
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
+      <a href='#' id='link1'>to 10%</a>
+      <a href='#' id='link2'>+=10px</a>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/rashfty">rashfty</a></p>

@@ -55,13 +55,12 @@
 		        	var p = bar_diff * content.scrollTop() / (content[0].scrollHeight - content.height());
 		            slider.css("top", p + "px");
 		        });
-		        /*
+		        
 		        bar.click(function(e) {
 		            var y = e.pageY - slider.offset().top;
-		            slider.css("top", "+=" + y/2 + "px");
-		            wrapper.jetScrollPanel('scroll');
+		            wrapper.jetScrollPanel('scroll', y > 0 ? "+=15" : "-=15");
 		        });
-*/
+
         	});
     	},
     	scroll: function(pixels) {
@@ -74,6 +73,15 @@
     		p *= content[0].scrollHeight - content.height();
             content.scrollTop(p);
             */
+            if (typeof pixels == "string") {
+            	if (pixels.toString().substr(0, 2) == "-=") {
+            		pixels = -1 * parseInt(pixels.toString().substr(2));
+            	}
+            	if (pixels.toString().substr(0, 2) == "+=") {
+            		pixels = parseInt(pixels.toString().substr(2));
+            	}
+            	pixels += content.scrollTop();
+            }
             content.scrollTop(pixels);
     	}
     }
