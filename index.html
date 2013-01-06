@@ -16,44 +16,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <style>
         .jetscrollbar {
-            z-index: 3;
+            
             background: #777;
             box-shadow: inset 3px 0 10px #333;
         }
         .jetscrollslider {
+            border: 1px solid #333;
+            border-width: 1px 0 1px 0;
             background: #AAA;
         }
         .jetscrollbar,
         .jetscrollslider {
-            border-radius: 5px;
+            /*border-radius: 5px;*/
         }
         #example {
             overflow: hidden;
             position: relative;
             height: 150px;
         }
-        /*
-        #example:before,
-        #example:after {
-            position: absolute;
-            content: "";
-            display: block;
-            width: 100%;
-            height: 1px;
-            z-index: 2;
-            box-shadow: 0 0 25px 20px #FFF;
+        .jetscrollpanel .jetscrollbar .jetscrollarrow {
+            color: #000;
+            background: #AAA;
         }
-        #example:before {
-            top: -5px;
+        .jetscrollpanel .jetscrollbar .jetscrollarrow.up {
+            border-radius: 5px 5px 0 0;
         }
-        #example:after {
-            bottom: -5px;
+        .jetscrollpanel .jetscrollbar .jetscrollarrow.down {
+            border-radius: 0 0 5px 5px;
         }
-        */
     </style>
     <script>
     	$(function() {
-		$("#example").jetScrollPanel();
+		$("#example").jetScrollPanel({arrows: true});
         $("#link1").click(function() {
             $("#example").jetScrollPanel("scroll", 10);
             return false;
