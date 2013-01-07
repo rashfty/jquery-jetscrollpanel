@@ -46,9 +46,9 @@
 	font-size: 15px;
 	line-height: 15px;
 }
-.jetscrollpanel .jetscrollbar .up {
+.jetscrollpanel .jetscrollbar .jetscrollarrow-up {
 	top: -15px;
 }
-.jetscrollpanel .jetscrollbar .down {
+.jetscrollpanel .jetscrollbar .jetscrollarrow-down {
 	bottom: -15px;
 }

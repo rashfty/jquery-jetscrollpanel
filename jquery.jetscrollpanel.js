@@ -17,24 +17,41 @@
         		var slider = bar.find(".jetscrollslider");
         		
         		if (options.arrows) {
-        			bar.prepend("<a href='#' class='jetscrollarrow up'>▲</a>").append("<a href='#' class='jetscrollarrow down'>▼</a>");
+        			bar.prepend("<a href='#' class='jetscrollarrow jetscrollarrow-up'>▲</a>").append("<a href='#' class='jetscrollarrow jetscrollarrow-down'>▼</a>");
         			var h = bar.find(".jetscrollarrow").disableSelection().height();
         			bar.css("margin", h + "px 0");
-        			
+
+        			var timer = null;
+
         			bar.find(".jetscrollarrow").click(function() {
-        				var p = parseInt(slider.css("top"));
-        				if ($(this).hasClass("up")) {
-        					p = Math.max(p - 15, 0);
-        				}
-        				if ($(this).hasClass("down")) {
-        					p = Math.min(p + 15, wrapper.jetScrollPanel("getTrackSize"));
-        				}
-        				slider.css("top", p + "px");
-        				wrapper.jetScrollPanel('scroll', ($(this).hasClass("up") ? "-" : "+") + "=15");
         				return false;
+        			}).bind("mousedown", function() {
+        				var obj = $(this);
+        				var func = function() {
+        					var p = parseInt(slider.css("top"));
+	        				if (obj.hasClass("jetscrollarrow-up")) {
+	        					p = Math.max(p - 15, 0);
+	        				}
+	        				if (obj.hasClass("jetscrollarrow-down")) {
+	        					p = Math.min(p + 15, wrapper.jetScrollPanel("getTrackSize"));
+	        				}
+	        				slider.css("top", p + "px");
+	        				wrapper.jetScrollPanel('scroll', (obj.hasClass("jetscrollarrow-up") ? "-" : "+") + "=15");
+        				}
+        				func();
+        				clearInterval(timer);
+        				timer = true;
+    					setTimeout(function() {
+    						if (timer === true)
+    							timer = setInterval(func, 150);
+    					}, 300);
+        				
+        				return false;
+        			}).bind("mouseup", function() {
+        				clearInterval(timer);
+        				timer = false;
         			});
         		}
-				
 
         		slider.draggable({
 		            containment: "parent",
@@ -56,7 +73,6 @@
 		            var y = e.pageY - slider.offset().top;
 		            wrapper.jetScrollPanel('scroll', y > 0 ? "+=15" : "-=15");
 		        });
-
 
         	});
     	},
