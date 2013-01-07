@@ -1,6 +1,5 @@
 jquery-jetscrollpanel
 =====================
-<h1>jquery.jetscrollpanel</h1>
   <p>A simple and powerful jQuery plugin to hide native browser scrollbar</p>
 
   <h2>Usage</h2>
