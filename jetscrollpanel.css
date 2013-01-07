@@ -11,46 +11,26 @@
 .jetscrollpanel .jetscrollcontent {
 	overflow-x: hidden;
 	overflow-y: scroll;
-	height: 150px;
-	margin-right: -15px;
-	padding-right: 13px;
-	-webkit-overflow-scrolling:touch;
-}
-/* webkit hack */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-	.jetscrollpanel .jetscrollcontent {
-		margin-right: 0;
-		padding-right: 15px;
-	}
+	height: 100%;
+	-webkit-overflow-scrolling: touch;
 }
 .jetscrollpanel .jetscrollbar {
 	position: absolute;
 	top: 0;
 	right: 0;
-	/* firefox hack */
-	bottom: -1px;
-	width: 15px;
+	bottom: 0;
+	display: block;
 }
 .jetscrollpanel .jetscrollslider {
 	position: absolute;
 	top: 0;
 	width: 100%;
-	height: 15%;
 	cursor: pointer;
 }
 .jetscrollpanel .jetscrollbar .jetscrollarrow {
 	position: absolute;
 	left: 0;
-	width: 15px;
-	height: 15px;
+	right: 0;
 	display: block;
-	font-size: 13px;
 	text-align: center;
-	line-height: 15px;
-}
-.jetscrollpanel .jetscrollbar .jetscrollarrow-up {
-	top: -15px;
-}
-.jetscrollpanel .jetscrollbar .jetscrollarrow-down {
-	bottom: -15px;
 }

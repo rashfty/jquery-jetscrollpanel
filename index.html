@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <link rel="stylesheet" href="jetscrollpanel.css">
     <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
     <script src="jquery.jetscrollpanel.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -47,7 +46,11 @@
     <script>
     	$(function() {
             $("#example1").jetScrollPanel();
-            $("#example2").jetScrollPanel({arrows: true});
+            $("#example2").jetScrollPanel({
+                arrows: true,
+                arrowHeight: 20,
+                barWidth: 10
+            });
             $("#example3").jetScrollPanel();
     	});
     </script>
@@ -81,10 +84,9 @@
         <p>A simple and powerful jQuery plugin to hide native browser scrollbar</p>
 
         <h2>Usage</h2>
-        Inlcude jQuery, jQuery UI (needs Draggable Widget) and plugin files:
+        Inlcude jQuery and plugin files:
         <pre><code>&lt;link rel="stylesheet" href="jetscrollpanel.css"&gt;
             &lt;script src="jquery.min.js"&gt;&lt;/script&gt;
-            &lt;script src="jquery-ui.min.js"&gt;&lt;/script&gt;
             &lt;script src="jquery.jetscrollpanel.js"&gt;&lt;/script&gt;</code></pre>
         And just write:
         <pre><code>&lt;script&gt;
