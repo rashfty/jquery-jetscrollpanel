@@ -14,7 +14,7 @@
                 
                 content.css({
                     marginRight: ($.browser.webkit ? 0 : -options.barWidth) + "px",
-                    paddingRight: options.barWidth + "px"
+                    paddingRight: parseInt(content.css("padding-right")) + options.barWidth + "px"
                 });
 
                 var wrapper = content.wrap("<div class='jetscrollpanel'/>").parent();
@@ -33,14 +33,12 @@
                         bar.hide();
                     } else {
                         bar.show();
-                        var h = Math.max(.15 * wrapper.height(), Math.min(wrapper.height(), content.height() * content.height() / ( wrapper.jetScrollPanel("getContentSize") + content.height() )));
-                        slider.height(h);
+                        slider.height( content.height() * content.height() / (wrapper.jetScrollPanel("getContentSize") + content.height()) );
                     }
                 }
                 adjustSliderHeight();
-                content.bind('DOMNodeInserted', function() {
-                    adjustSliderHeight();
-                });
+                content.bind('DOMNodeInserted', adjustSliderHeight)
+                       .bind('DOMNodeRemoved', adjustSliderHeight);
 
                 if (options.arrows) {
                     bar.prepend("<a href='#' class='jetscrollarrow jetscrollarrow-up'>▲</a>")
@@ -63,22 +61,14 @@
                     }).bind("mousedown", function() {
                         var obj = $(this);
                         var func = function() {
-                            var p = parseInt(slider.css("top"));
-                            if (obj.hasClass("jetscrollarrow-up")) {
-                                p = Math.max(p - 15, 0);
-                            }
-                            if (obj.hasClass("jetscrollarrow-down")) {
-                                p = Math.min(p + 15, wrapper.jetScrollPanel("getTrackSize"));
-                            }
-                            slider.css("top", p + "px");
-                            wrapper.jetScrollPanel('scroll', (obj.hasClass("jetscrollarrow-up") ? "-" : "+") + "=15");
+                            wrapper.jetScrollPanel('scroll', (obj.hasClass("jetscrollarrow-up") ? "-" : "+") + "=15px");
                         }
                         func();
                         clearInterval(timer);
                         timer = true;
                         setTimeout(function() {
                             if (timer === true)
-                                timer = setInterval(func, 150);
+                                timer = setInterval(func, 50);
                         }, 300);
                         
                         return false;
@@ -97,7 +87,7 @@
                             var t = e.pageY + pos_y - bar.offset().top;
                             obj.css({ top: Math.max(Math.min(t, bar.height() - slider.height()), 0) });
                             var p = wrapper.jetScrollPanel("getContentSize") * t / (wrapper.jetScrollPanel("getTrackSize"));
-                            wrapper.jetScrollPanel('scroll', p);
+                            wrapper.jetScrollPanel("scroll", p);
                         }
                         obj.parents().on("mouseup", function() {
                             obj.removeClass('dragging');
@@ -111,29 +101,43 @@
                 content.scroll(function(e) {
                     var p = (wrapper.jetScrollPanel("getTrackSize")) * content.scrollTop() / wrapper.jetScrollPanel("getContentSize");
                     slider.css("top", p + "px");
-                    
                 });
                 
                 bar.click(function(e) {
+                    // if ($(e.target).hasClass("jetscrollslider")) return false;
                     var y = e.pageY - slider.offset().top;
-                    wrapper.jetScrollPanel('scroll', y > 0 ? "+=15" : "-=15");
+                    wrapper.jetScrollPanel('scroll', y > 0 ? "+=15px" : "-=15px");
                 });
 
             });
         },
         scroll: function(pixels) {
-            var content = $(this).find(".jetscrollcontent");
+            var content, wrapper;
+            if ($(this).hasClass("jetscrollpanel")) {
+                wrapper = $(this).parent();
+            } else {
+                wrapper = $(this).find(".jetscrollpanel");
+            }
+            var content = wrapper.find(".jetscrollcontent");
 
             if (typeof pixels == "string") {
-                if (pixels.toString().substr(0, 2) == "-=") {
-                    pixels = -1 * parseInt(pixels.toString().substr(2));
+                var m, k;
+                if ((m = /(\-|\+)=\d+(px|%)/.exec(pixels)) != null)  {
+                    k = parseInt(pixels.substr(2));
+                    if (m[2] == "%") { 
+                        k *= wrapper.jetScrollPanel("getContentSize") / 100;
+                    }
+                    pixels = content.scrollTop() + (m[1] == "-" ? -k : k);
+                } else if ((m = /\d+(px|%)/.exec(pixels)) != null) {
+                    pixels = parseInt(pixels);
+                    if (m[1] == "%") {
+                        pixels *= wrapper.jetScrollPanel("getContentSize") / 100;
+                    }
+                } else {
+                    return false;
                 }
-                if (pixels.toString().substr(0, 2) == "+=") {
-                    pixels = parseInt(pixels.toString().substr(2));
-                }
-                pixels += content.scrollTop();
             }
-            content.scrollTop(pixels);
+            content.scrollTop(parseInt(pixels));
         },
         getTrackSize: function() {
             var bar = $(this).find(".jetscrollbar");

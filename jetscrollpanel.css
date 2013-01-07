@@ -25,6 +25,8 @@
 	position: absolute;
 	top: 0;
 	width: 100%;
+	min-height: 15%;
+	max-height: 85%;
 	cursor: pointer;
 }
 .jetscrollpanel .jetscrollbar .jetscrollarrow {

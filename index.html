@@ -14,8 +14,24 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <style>
-        code {
-            white-space: pre-line;
+        button {
+          border: 1px solid #AAA;
+          background: #DDD;
+          border-radius: 3px;
+          margin: 10px 5px 10px 0;
+          box-shadow: 0 0 3px #BBB;
+          font: 0.7em Arial;
+          text-transform: lowercase;
+          padding: 3px 10px;
+        }
+        button:hover {
+          background: #EEE;
+        }
+        button:active {
+          box-shadow: inset 1px 1px 3px #CCC;
+        }
+        pre {
+          color: #def;
         }
         .jetscrollcontent {
             padding: 5px 10px;
@@ -34,9 +50,9 @@
         .example {
             overflow: hidden;
             position: relative;
-            height: 150px;
+            height: 200px;
             border: 1px solid #777;
-            box-shadow: 0 0 5px #555;
+            box-shadow: 0 0 3px #777;
         }
         .jetscrollpanel .jetscrollbar .jetscrollarrow {
             color: #000;
@@ -85,17 +101,21 @@
 
         <h2>Usage</h2>
         Inlcude jQuery and plugin files:
-        <pre><code>&lt;link rel="stylesheet" href="jetscrollpanel.css"&gt;
-            &lt;script src="jquery.min.js"&gt;&lt;/script&gt;
-            &lt;script src="jquery.jetscrollpanel.js"&gt;&lt;/script&gt;</code></pre>
+<pre>
+&lt;link rel="stylesheet" href="jetscrollpanel.css"&gt;
+&lt;script src="jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.jetscrollpanel.js"&gt;&lt;/script&gt;
+</pre>
         And just write:
-        <pre><code>&lt;script&gt;
-            $(function() { $("selector").jetScrollPanel(); });
-            &lt;/script&gt;</code></pre>
+<pre>
+&lt;script&gt;
+    $(function() { $("selector").jetScrollPanel(); });
+&lt;/script&gt;
+</pre>
         <h2>Examples</h2>
 
-      <h3>Without arrows (Default)</h3>
-      <pre><code>$("#example1").jetScrollPanel();</code></pre>
+      <h3>Default</h3>
+      <pre>$("#example1").jetScrollPanel();</pre>
       <div id="example1" class='example'>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -115,8 +135,14 @@
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
       <br/>
-      <h3>With arrows</h3>
-      <pre><code>$("#example2").jetScrollPanel({ arrows: true });</code></pre>
+      <h3>More complex</h3>
+<pre>
+$("#example2").jetScrollPanel({
+  arrows: true,
+  arrowHeight: 20,
+  barWidth: 10
+});
+</pre>
       <div id="example2" class='example'>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -136,14 +162,48 @@
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
       <br/>
-      <h3>Adding content</h3>
+      <h3>Manipulations</h3>
       <div id="example3" class='example'>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.</p>
+        <div style='height: 100px; background: #EEE; outline: 1px solid #CCC; display: block;'></div>
+        <a id='anchor'>anchor</a>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <br/>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <a id='anchor'>anchor</a>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <br/>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
-      <a href='#' onclick='$("#example3 .jetscrollcontent").append($("#example3 .jetscrollcontent").find("p:first").clone()); return false;'>Add content!</a>
+      <button onclick='$("#example3 .jetscrollcontent").append($("#example1 .jetscrollcontent p:first").clone()); return false;'>Add content</button>
+      <button onclick='$("#example3 .jetscrollcontent *").remove(); return false;'>Clear</button>
+      <button onclick='$("#example3").jetScrollPanel("scroll", "30px"); return false;'>to 30px</button>
+      <button onclick='$("#example3").jetScrollPanel("scroll", "50%"); return false;'>to 50%</button>
+      <button onclick='$("#example3").jetScrollPanel("scroll", "-=10px"); return false;'>-= 10px</button>
+      <button onclick='$("#example3").jetScrollPanel("scroll", "+=10%"); return false;'>+= 10%</button>
       <br/>
       </section>
       <footer>
