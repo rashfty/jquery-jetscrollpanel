@@ -1,0 +1,36 @@
+.jetscrollpanel {
+	display: block;
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+/* webkit hack */
+.jetscrollpanel ::-webkit-scrollbar {
+	display: none;
+}
+.jetscrollpanel .jetscrollcontent {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 100%;
+	-webkit-overflow-scrolling: touch;
+}
+.jetscrollpanel .jetscrollbar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: block;
+}
+.jetscrollpanel .jetscrollslider {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	cursor: pointer;
+}
+.jetscrollpanel .jetscrollbar .jetscrollarrow {
+	position: absolute;
+	left: 0;
+	right: 0;
+	display: block;
+	text-align: center;
+}

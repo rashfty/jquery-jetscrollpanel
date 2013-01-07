@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery-jetscrollpanel by rashfty</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="jetscrollpanel.css">
+    <script src="jquery.min.js"></script>
+    <script src="jquery.jetscrollpanel.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        code {
+            white-space: pre-line;
+        }
+        .jetscrollcontent {
+            padding: 5px 10px;
+        }
+        .jetscrollbar {
+            background: #777;
+            box-shadow: inset 3px 0 10px #333;
+        }
+        .jetscrollslider {
+            background: #AAA;
+        }
+        #example2 .jetscrollslider {
+            border: 1px solid #333;
+            border-width: 1px 0 1px 0;
+        }
+        .example {
+            overflow: hidden;
+            position: relative;
+            height: 150px;
+            border: 1px solid #777;
+            box-shadow: 0 0 5px #555;
+        }
+        .jetscrollpanel .jetscrollbar .jetscrollarrow {
+            color: #000;
+            background: #AAA;
+        }
+    </style>
+    <script>
+    	$(function() {
+            $("#example1").jetScrollPanel();
+            $("#example2").jetScrollPanel({
+                arrows: true,
+                arrowHeight: 20,
+                barWidth: 10
+            });
+            $("#example3").jetScrollPanel();
+    	});
+    </script>
+  </head>
+  <body>
+
+      <header>
+        <h1>Jquery-jetscrollpanel</h1>
+        <p></p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/rashfty/jquery-jetscrollpanel" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/rashfty/jquery-jetscrollpanel/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/rashfty/jquery-jetscrollpanel/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>jquery.jetscrollpanel</h1>
+        <p>A simple and powerful jQuery plugin to hide native browser scrollbar</p>
+
+        <h2>Usage</h2>
+        Inlcude jQuery and plugin files:
+        <pre><code>&lt;link rel="stylesheet" href="jetscrollpanel.css"&gt;
+            &lt;script src="jquery.min.js"&gt;&lt;/script&gt;
+            &lt;script src="jquery.jetscrollpanel.js"&gt;&lt;/script&gt;</code></pre>
+        And just write:
+        <pre><code>&lt;script&gt;
+            $(function() { $("selector").jetScrollPanel(); });
+            &lt;/script&gt;</code></pre>
+        <h2>Examples</h2>
+
+      <h3>Without arrows (Default)</h3>
+      <pre><code>$("#example1").jetScrollPanel();</code></pre>
+      <div id="example1" class='example'>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <a id='anchor'>anchor</a>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <br/>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <br/>
+      <h3>With arrows</h3>
+      <pre><code>$("#example2").jetScrollPanel({ arrows: true });</code></pre>
+      <div id="example2" class='example'>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <a id='anchor'>anchor</a>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <br/>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <br/>
+      <h3>Adding content</h3>
+      <div id="example3" class='example'>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+      </div>
+      <a href='#' onclick='$("#example3 .jetscrollcontent").append($("#example3 .jetscrollcontent").find("p:first").clone()); return false;'>Add content!</a>
+      <br/>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/rashfty">rashfty</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>
