@@ -12,5 +12,6 @@ And just write:
 <pre><code>&lt;script&gt;
 $(function() { $("selector").jetScrollPanel(); });
 &lt;/script&gt;</code></pre>
-      
+<h2>License</h2>
+See LICENSE.TXT file.
 <a href='http://rashfty.github.com/jquery-jetscrollpanel/'>Home page</a>
