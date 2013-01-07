@@ -19,7 +19,7 @@
             white-space: pre-line;
         }
         .jetscrollcontent {
-            
+            padding: 5px 10px;
         }
         .jetscrollbar {
             background: #777;
@@ -48,6 +48,7 @@
     	$(function() {
             $("#example1").jetScrollPanel();
             $("#example2").jetScrollPanel({arrows: true});
+            $("#example3").jetScrollPanel();
     	});
     </script>
   </head>
@@ -132,6 +133,15 @@
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
+      <br/>
+      <h3>Adding content</h3>
+      <div id="example3" class='example'>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+      </div>
+      <a href='#' onclick='$("#example3 .jetscrollcontent").append($("#example3 .jetscrollcontent").find("p:first").clone()); return false;'>Add content!</a>
       <br/>
       </section>
       <footer>

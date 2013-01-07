@@ -18,7 +18,7 @@
         		
         		if (options.arrows) {
         			bar.prepend("<a href='#' class='jetscrollarrow jetscrollarrow-up'>▲</a>").append("<a href='#' class='jetscrollarrow jetscrollarrow-down'>▼</a>");
-        			var h = bar.find(".jetscrollarrow").disableSelection().height();
+        			var h = bar.find(".jetscrollarrow").height();
         			bar.css("margin", h + "px 0");
 
         			var timer = null;
@@ -57,14 +57,13 @@
 		            containment: "parent",
 		            scroll: false,
 		            drag: function(e, ui) {
-        				var p = ui.position.top / (wrapper.jetScrollPanel("getTrackSize"));
-        				p *= content[0].scrollHeight - content.height();
+        				var p = wrapper.jetScrollPanel("getContentSize") * ui.position.top / (wrapper.jetScrollPanel("getTrackSize"));
         				wrapper.jetScrollPanel('scroll', p);
         			}
 		        });
 
 		        content.scroll(function(e) {
-		        	var p = (wrapper.jetScrollPanel("getTrackSize")) * content.scrollTop() / (content[0].scrollHeight - content.height());
+		        	var p = (wrapper.jetScrollPanel("getTrackSize")) * content.scrollTop() / wrapper.jetScrollPanel("getContentSize");
 		            slider.css("top", p + "px");
 		            
 		        });
@@ -94,6 +93,10 @@
     		var bar = $(this).find(".jetscrollbar");
     		var slider = bar.find(".jetscrollslider");
     		return bar.height() - slider.height() - parseInt(slider.css("border-top-width")) - parseInt(slider.css("border-bottom-width"));
+    	},
+    	getContentSize: function() {
+    		var content = $(this).find(".jetscrollcontent");
+    		return content[0].scrollHeight - content.height() - parseInt(content.css("padding-top")) - parseInt(content.css("padding-bottom"));
     	}
     }
     $.fn.jetScrollPanel = function(method){
