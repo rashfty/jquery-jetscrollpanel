@@ -65,7 +65,7 @@
 
 		        content.scroll(function(e) {
 		        	var p = (wrapper.jetScrollPanel("getTrackSize")) * content.scrollTop() / (content[0].scrollHeight - content.height());
-		            slider.css("top", Math.floor(p) + "px");
+		            slider.css("top", p + "px");
 		            
 		        });
 		        

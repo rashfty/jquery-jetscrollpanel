@@ -15,48 +15,40 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <style>
-        .jetscrollbar {
+        code {
+            white-space: pre-line;
+        }
+        .jetscrollcontent {
             
+        }
+        .jetscrollbar {
             background: #777;
             box-shadow: inset 3px 0 10px #333;
         }
         .jetscrollslider {
-            border: 1px solid #333;
-            border-width: 1px 0 1px 0;
             background: #AAA;
         }
-        .jetscrollbar,
-        .jetscrollslider {
-            /*border-radius: 5px;*/
+        #example2 .jetscrollslider {
+            border: 1px solid #333;
+            border-width: 1px 0 1px 0;
         }
-        #example {
+        .example {
             overflow: hidden;
             position: relative;
             height: 150px;
+            border: 1px solid #777;
+            box-shadow: 0 0 5px #555;
         }
         .jetscrollpanel .jetscrollbar .jetscrollarrow {
             color: #000;
             background: #AAA;
         }
-        .jetscrollpanel .jetscrollbar .jetscrollarrow-up {
-            border-radius: 5px 5px 0 0;
-        }
-        .jetscrollpanel .jetscrollbar .jetscrollarrow-down {
-            border-radius: 0 0 5px 5px;
-        }
     </style>
     <script>
     	$(function() {
-		$("#example").jetScrollPanel({arrows: true});
-        $("#link1").click(function() {
-            $("#example").jetScrollPanel("scroll", 10);
-            return false;
-        });
-        $("#link2").click(function() {
-            $("#example").jetScrollPanel("scroll", "+=10");
-            return false;
-        });
-	});
+            $("#example1").jetScrollPanel();
+            $("#example2").jetScrollPanel({arrows: true});
+    	});
     </script>
   </head>
   <body>
@@ -84,8 +76,24 @@
         <ul></ul>
       </nav>
       <section>
-      <h3>Example</h3>
-      <div id="example">
+        <h1>jquery.jetscrollpanel</h1>
+        <p>A simple and powerful jQuery plugin to hide native browser scrollbar</p>
+
+        <h2>Usage</h2>
+        Inlcude jQuery, jQuery UI (needs Draggable Widget) and plugin files:
+        <pre><code>&lt;link rel="stylesheet" href="jetscrollpanel.css"&gt;
+            &lt;script src="jquery.min.js"&gt;&lt;/script&gt;
+            &lt;script src="jquery-ui.min.js"&gt;&lt;/script&gt;
+            &lt;script src="jquery.jetscrollpanel.js"&gt;&lt;/script&gt;</code></pre>
+        And just write:
+        <pre><code>&lt;script&gt;
+            $(function() { $("selector").jetScrollPanel(); });
+            &lt;/script&gt;</code></pre>
+        <h2>Examples</h2>
+
+      <h3>Without arrows (Default)</h3>
+      <pre><code>$("#example2").jetScrollPanel({ arrows: false });</code></pre>
+      <div id="example1" class='example'>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -103,11 +111,28 @@
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
-      <ul>
-        <li><a href='#' id='link1'>to 10%</a></li>
-        <li><a href='#' id='link2'>+=10px</a></li>
-        <li><a href='#anchor'>anchor</a></li>
-      </ul>
+      <br/>
+      <h3>With arrows</h3>
+      <pre><code>$("#example1").jetScrollPanel({ arrows: true });</code></pre>
+      <div id="example2" class='example'>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <a id='anchor'>anchor</a>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <br/>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <br/>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/rashfty">rashfty</a></p>
