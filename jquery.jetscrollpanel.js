@@ -146,7 +146,7 @@
         },
         getContentSize: function() {
             var content = $(this).find(".jetscrollcontent");
-            return content[0].scrollHeight - content.height() - parseInt(content.css("padding-top")) - parseInt(content.css("padding-bottom"));
+            return content[0].scrollHeight - content.outerHeight();
         }
     }
     $.fn.jetScrollPanel = function(method){
