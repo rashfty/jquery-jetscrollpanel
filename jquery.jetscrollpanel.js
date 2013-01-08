@@ -142,7 +142,7 @@
         getTrackSize: function() {
             var bar = $(this).find(".jetscrollbar");
             var slider = bar.find(".jetscrollslider");
-            return bar.height() - slider.height() - parseInt(slider.css("border-top-width")) - parseInt(slider.css("border-bottom-width"));
+            return bar.height() - slider.outerHeight();
         },
         getContentSize: function() {
             var content = $(this).find(".jetscrollcontent");
