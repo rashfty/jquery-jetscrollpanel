@@ -54,27 +54,28 @@
                     bar.find(".jetscrollarrow-up").css("top", -options.arrowHeight + "px");
                     bar.find(".jetscrollarrow-down").css("bottom", -options.arrowHeight + "px");
 
-                    var timer = null;
+                    var timer, active = false,
+                        autoScroll = function(up) {
+                            wrapper.jetScrollPanel('scroll', (up ? "-" : "+") + "=15px");
+                        };
 
                     arrows.click(function() {
                         return false;
                     }).bind("mousedown", function() {
                         var obj = $(this);
-                        var func = function() {
-                            wrapper.jetScrollPanel('scroll', (obj.hasClass("jetscrollarrow-up") ? "-" : "+") + "=15px");
-                        }
-                        func();
-                        clearInterval(timer);
-                        timer = true;
+                        autoScroll(obj.hasClass("jetscrollarrow-up"));
+                        active = true;
                         setTimeout(function() {
-                            if (timer === true)
-                                timer = setInterval(func, 50);
+                            if (active) {
+                                clearInterval(timer);
+                                timer = setInterval(function() {
+                                    autoScroll(obj.hasClass("jetscrollarrow-up"));
+                                }, 70);
+                            }
                         }, 300);
-                        
-                        return false;
                     }).bind("mouseup", function() {
+                        active = false;
                         clearInterval(timer);
-                        timer = false;
                     });
                 }
 
@@ -93,7 +94,6 @@
                             obj.removeClass('dragging');
                         });
                     });
-                    e.preventDefault();
                 }).on("mouseup", function() {
                     $(this).removeClass("dragging");
                 });
@@ -104,7 +104,6 @@
                 });
                 
                 bar.click(function(e) {
-                    // if ($(e.target).hasClass("jetscrollslider")) return false;
                     var y = e.pageY - slider.offset().top;
                     wrapper.jetScrollPanel('scroll', y > 0 ? "+=15px" : "-=15px");
                 });
