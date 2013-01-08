@@ -85,7 +85,7 @@
                     $("html").on("mousemove", function(e) {
                         if (obj.hasClass("dragging")) {
                             var t = e.pageY + pos_y - bar.offset().top;
-                            obj.css({ top: Math.max(Math.min(t, bar.height() - slider.height()), 0) });
+                            obj.css({ top: Math.max(Math.min(t, bar.height() - slider.outerHeight()), 0) });
                             var p = wrapper.jetScrollPanel("getContentSize") * t / (wrapper.jetScrollPanel("getTrackSize"));
                             wrapper.jetScrollPanel("scroll", p);
                         }
