@@ -80,6 +80,7 @@
                 }
 
                 slider.on("mousedown", function(e) {
+                    content.bind("selectstart", function() { return false; }).addClass('unselectable');
                     var obj = $(this);
                     var pos_y = obj.offset().top - e.pageY;
                     $(this).addClass("dragging");
@@ -96,6 +97,7 @@
                     });
                 }).on("mouseup", function() {
                     $(this).removeClass("dragging");
+                    content.unbind("selectstart").removeClass('unselectable');
                 });
 
                 content.scroll(function(e) {

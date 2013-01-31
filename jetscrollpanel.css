@@ -1,38 +1,45 @@
 .jetscrollpanel {
-	display: block;
+	display : block;
 	position: relative;
-	height: 100%;
+	height  : 100%;
 	overflow: hidden;
 }
-/* webkit hack */
 .jetscrollpanel ::-webkit-scrollbar {
 	display: none;
 }
 .jetscrollpanel .jetscrollcontent {
-	overflow-x: hidden;
-	overflow-y: scroll;
-	height: 100%;
+	overflow-x                : hidden;
+	overflow-y                : scroll;
+	height                    : 100%;
 	-webkit-overflow-scrolling: touch;
+}
+.jetscrollpanel .unselectable {
+	-moz-user-select   :none;
+	-o-user-select     :none;
+	-khtml-user-select :none;
+	-webkit-user-select:none;
+	-ms-user-select    :none;
+	user-select        :none;
 }
 .jetscrollpanel .jetscrollbar {
 	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	display: block;
+	top     : 0;
+	right   : 0;
+	bottom  : 0;
+	display : block;
 }
 .jetscrollpanel .jetscrollslider {
-	position: absolute;
-	top: 0;
-	width: 100%;
+	position  : absolute;
+	top       : 0;
+	width     : 100%;
 	min-height: 15%;
 	max-height: 85%;
-	cursor: pointer;
+	cursor    : pointer;
 }
 .jetscrollpanel .jetscrollbar .jetscrollarrow {
-	position: absolute;
-	left: 0;
-	right: 0;
-	display: block;
+	position  : absolute;
+	left      : 0;
+	right     : 0;
+	display   : block;
 	text-align: center;
 }
