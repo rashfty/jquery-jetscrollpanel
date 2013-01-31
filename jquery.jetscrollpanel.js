@@ -84,6 +84,11 @@
                     var obj = $(this);
                     var pos_y = obj.offset().top - e.pageY;
                     $(this).addClass("dragging");
+
+                    function resetDrag() {
+                        obj.removeClass('dragging');
+                        content.unbind("selectstart").removeClass('unselectable');
+                    }
                     $("html").on("mousemove", function(e) {
                         if (obj.hasClass("dragging")) {
                             var t = e.pageY + pos_y - bar.offset().top;
@@ -91,14 +96,9 @@
                             var p = wrapper.jetScrollPanel("getContentSize") * t / (wrapper.jetScrollPanel("getTrackSize"));
                             wrapper.jetScrollPanel("scroll", p);
                         }
-                        obj.parents().on("mouseup", function() {
-                            obj.removeClass('dragging');
-                        });
+                        obj.parents().on("mouseup", resetDrag);
                     });
-                }).on("mouseup", function() {
-                    $(this).removeClass("dragging");
-                    content.unbind("selectstart").removeClass('unselectable');
-                });
+                }).on("mouseup", resetDrag);
 
                 content.scroll(function(e) {
                     var p = (wrapper.jetScrollPanel("getTrackSize")) * content.scrollTop() / wrapper.jetScrollPanel("getContentSize");
