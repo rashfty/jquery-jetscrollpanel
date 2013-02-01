@@ -79,16 +79,17 @@
                     });
                 }
 
+                function resetDrag() {
+                    slider.removeClass('dragging');
+                    content.unbind("selectstart").removeClass('unselectable');
+                }
+
                 slider.on("mousedown", function(e) {
                     content.bind("selectstart", function() { return false; }).addClass('unselectable');
                     var obj = $(this);
                     var pos_y = obj.offset().top - e.pageY;
                     $(this).addClass("dragging");
-
-                    function resetDrag() {
-                        obj.removeClass('dragging');
-                        content.unbind("selectstart").removeClass('unselectable');
-                    }
+                    
                     $("html").on("mousemove", function(e) {
                         if (obj.hasClass("dragging")) {
                             var t = e.pageY + pos_y - bar.offset().top;
